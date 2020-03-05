@@ -30,17 +30,17 @@ class TwitterClass:
 
         #importing word_list
         file_path = './word_list.txt'
-        if ".zip/" in file_path:
-            archive_path = os.path.abspath(file_path)
-            split = archive_path.split(".zip/")
-            archive_path = split[0] + ".zip"
-            path_inside = split[1]
-            archive = zipfile.ZipFile(archive_path, "r")
-            self.embeddings = archive.read(path_inside).decode("utf8").split("\n")
-            self.embeddings = self.embeddings[:max_length_dictionary]
+        # if ".zip/" in file_path:
+        #     archive_path = os.path.abspath(file_path)
+        #     split = archive_path.split(".zip/")
+        #     archive_path = split[0] + ".zip"
+        #     path_inside = split[1]
+        #     archive = zipfile.ZipFile(archive_path, "r")
+        #     self.embeddings = archive.read(path_inside).decode("utf8").split("\n")
+        #     self.embeddings = self.embeddings[:max_length_dictionary]
 
-        else:
-            self.embeddings = open(file_path, 'r', encoding="utf-8").read().split("\n")
+        # else:
+        self.embeddings = open(file_path, 'r', encoding="utf-8").read().split("\n")
 
         self.tokenizer = TweetTokenizer()
 
@@ -53,21 +53,21 @@ class TwitterClass:
         """
 
         file_path = './english'
-        if ".zip/" in file_path:
-            archive_path = os.path.abspath(file_path)
-            split = archive_path.split(".zip/")
-            archive_path = split[0] + ".zip"
-            path_inside = split[1]
-            archive = zipfile.ZipFile(archive_path, "r")
-            stopwords = archive.read(path_inside).decode("utf8").split("\n")
+        # if ".zip/" in file_path:
+        #     archive_path = os.path.abspath(file_path)
+        #     split = archive_path.split(".zip/")
+        #     archive_path = split[0] + ".zip"
+        #     path_inside = split[1]
+        #     archive = zipfile.ZipFile(archive_path, "r")
+        #     stopwords = archive.read(path_inside).decode("utf8").split("\n")
 
-        else:
-            stopwords = []
-            with open("english") as files:
-                for line in files:
-                    values = line.split()
-                    word = values[0]
-                    stopwords.append(word)
+        # else:
+        stopwords = []
+        with open("english") as files:
+            for line in files:
+                values = line.split()
+                word = values[0]
+                stopwords.append(word)
         # stop_words = set(stopwords.words('english'))
         pattern = re.compile(r'\b(' + r'|'.join(stopwords) + r')\b\s*')
         tweet = pattern.sub('', tweet)
