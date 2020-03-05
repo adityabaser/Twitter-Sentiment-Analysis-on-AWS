@@ -140,16 +140,16 @@ class TwitterClass:
 
         return token_pad
 
-    def processed(self, tweet):
-        """
-        Function to return final output
-        """
-        cleaned = self.clean_text(tweet)
-        tokens = self.tokenize_text(cleaned)
-        embeddings = self.replace_token_with_index(tokens)
-        padded = self.pad_sequence(embeddings)
+    # def processed(self, tweet):
+    #     """
+    #     Function to return final output
+    #     """
+    #     cleaned = self.clean_text(tweet)
+    #     tokens = self.tokenize_text(cleaned)
+    #     embeddings = self.replace_token_with_index(tokens)
+    #     padded = self.pad_sequence(embeddings)
 
-        return padded
+    #     return padded
 
 
 
