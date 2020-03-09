@@ -39,8 +39,8 @@ def map_function(dynamicRecord):
     dynamicRecord["features"] = features
     return dynamicRecord
 map1 = Map.apply(frame = applymapping1, f = map_function, transformation_ctx = "map1")
-map1.repartition(1)
+x = map1.repartition(1)
 
-datasink2 = glueContext.write_dynamic_frame.from_options(frame = map1, connection_type = "s3", connection_options = {"path": "s3://group16-assignment-6/data_preprocess/train"}, format = "json", transformation_ctx = "datasink2")
+datasink2 = glueContext.write_dynamic_frame.from_options(frame = x, connection_type = "s3", connection_options = {"path": "s3://group16-assignment-6/data_preprocess/train"}, format = "json", transformation_ctx = "datasink2")
 
 job.commit()
